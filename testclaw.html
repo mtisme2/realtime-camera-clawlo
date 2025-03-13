@@ -7,18 +7,23 @@
 </head>
 <body>
     <h2> กล้อง Real-time</h2>
+    <button id="startButton">เปิดกล้อง</button>
     <video id="video" width="640" height="480" autoplay playsinline></video>
 
     <script>
+        const startButton = document.getElementById('startButton');
+        const video = document.getElementById('video');
+
+        startButton.addEventListener('click', startCamera);
+
         async function startCamera() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                document.getElementById('video').srcObject = stream;
+                video.srcObject = stream;
             } catch (error) {
                 console.error("ไม่สามารถเข้าถึงกล้องได้: ", error);
             }
         }
-        startCamera();
     </script>
 </body>
 </html>
